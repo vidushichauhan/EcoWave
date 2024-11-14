@@ -1,13 +1,18 @@
 {% extends 'Shop/base.html' %}
-{% block title %}GreenCart | My Listings {% endblock %}
+{% block title %}GreenCart | TradeIn {% endblock %}
 
 
 {% block content %}
     <div class="container mx-auto p-6">
         <div class="w-100 flex justify-between items-center p-0">
-            <h1 class="text-3xl font-bold mb-5 p-0 m-0 text-green-800">Product List</h1>
+            <h1 class="text-3xl font-bold mb-5 p-0 m-0 text-light-brown-800 ">Want to Trade In Product?</h1>
             <a href="{% url 'Shop:create_product' %}" class="block mt-4">
-                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Add New Product</button>
+                <button type="button" class="text-white bg-amber-900 hover:bg-amber-1000 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                Add Your Item Here
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+                </button>
             </a>
         </div>
         {% if products %}
