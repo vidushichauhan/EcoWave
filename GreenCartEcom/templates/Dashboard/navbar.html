@@ -6,44 +6,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com/"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
-
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}EcoPulse{% endblock %}</title>
     <style>
-        html,
-        body {
-            height: 100%;
+        nav {
+            background-color: white; /* White background */
+            border-radius: 0 0 2rem 2rem; /* Rounded bottom edges */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 1.5rem 2rem;
         }
 
-        .scroll-container {
-            height: calc(100% - 6rem);
-            /* Adjust based on your header height */
-            overflow-y: auto;
+        nav .nav-links a {
+            color: #333333; /* Neutral dark color for text */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #57A773; /* Soft green hover effect */
+        }
+
+        .join-button {
+            background-color: #57A773; /* Green background for the button */
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 999px; /* Fully rounded button */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow for depth */
+            transition: background-color 0.3s ease;
+        }
+
+        .join-button:hover {
+            background-color: #3F8D62; /* Slightly darker green on hover */
         }
     </style>
 </head>
 
 <body>
-
-    <nav class="py-5 flex-wrap bg-green-100/75">
-        <div class="container mx-auto px-6 md:px-0">
-                <div class="flex items-center justify-between">
-                    <!-- Left side: GreenCart logo/image and search field -->
-                    <div class="flex items-center">
-                        <!-- GreenCart logo/image (replace with your image or text) -->
-                        <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                            <img src="{% static 'images/logo.png' %}" class="h-8" alt="GreenCart Logo" />
-                        </a>
-                    </div>
-
-                    <div class="hidden md:flex items-center space-x-4 relative">
-                        <a href="{% url 'GreenCartEcom:about' %}" class="pr-4 text-green-500/50 hover:text-green-600 text-lg font-semibold">About Us</a>
-                        <a href="{% url 'Auth:login' %}" class="w-full px-6 py-2 mt-5 text-white text-lg bg-green-600 hover:bg-green-700 rounded-lg sm:mt-0 sm:w-auto">Login</a>
-                    </div>          
-                </div>
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <img src="{% static 'images/logo.png' %}" alt="EcoPulse Logo" class="h-8 mr-2">
+            <span class="text-xl font-bold text-green-700">EcoPulse</span>
         </div>
-    </nav>
 
+        <!-- Navigation Links -->
+        <div class="nav-links flex space-x-8">
+            <a href="{% url 'home' %}" class="text-lg">Home</a>
+            <a href="{% url 'about_us' %}" class="text-lg">About Us</a>
+            <a href="{% url 'services' %}" class="text-lg">Services</a>
+            <a href="{% url 'get_involved' %}" class="text-lg">Get Involved</a>
+        </div>
+
+        <!-- Join Us Button -->
+        <a href="{% url 'join_us' %}" class="join-button">Join Us</a>
+    </nav>
 </body>
+
 </html>

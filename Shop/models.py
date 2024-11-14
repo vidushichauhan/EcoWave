@@ -22,7 +22,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user_id = models.CharField(max_length=10, default="1")
     expiry_date = models.DateTimeField(blank=True, null=True)
-
+    is_verified = models.BooleanField(default=False, help_text="Mark this product as verified to display on homepage")
     # Trade-In Specific Fields
     condition_choices = [
         ('new', 'New'),

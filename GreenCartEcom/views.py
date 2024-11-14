@@ -11,7 +11,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('Shop:home')  # Redirect to home page if user is already logged in
     # productList = Product.objects.all()
-    productList = Product.objects.filter(in_stock=True)
+    productList = Product.objects.filter(is_verified=True, in_stock=True)
     productList = [product for product in productList if product.days_left() > 0]
     offerPosterList = offer.objects.all()
     # Fetch all products
@@ -19,6 +19,19 @@ def index(request):
         'products': productList,
         'offers': offerPosterList
     })
+
+def unverified_products(request):
+
+    unverified_products = Product.objects.filter(is_verified=True, in_stock=True)
+    unverified_products_list = [product for product in unverified_products if product.days_left() > 0]
+    return render(request, 'Dashboard/unverified_products.html', {'unverified_products': unverified_products_list})
+
+def unverified_products(request):
+    # Ensure only admins or staff can access this
+    if not request.user.is_staff:
+        return redirect('homepage')
+    products = Product.objects.filter(is_verified=False)
+    return render(request, 'Dashboard/unverified_products.html', {'products': products})
 
 def contact(request):
     return render(request, 'Dashboard/contact.html')

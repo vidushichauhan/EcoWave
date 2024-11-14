@@ -11,5 +11,6 @@ urlpatterns = [
     path('gardening-guides/', views.gardening_guides, name='gardening_guides'),
     path('plant-care-tips/', views.plant_care_tips, name='plant_care_tips'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('unverified-products/', views.unverified_products, name='unverified_products'),
     
 ]
