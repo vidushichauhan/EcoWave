@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=255, blank=True, null=True)
     zip_code = models.CharField(max_length=10, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    profile_pic = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    profile_pic = models.ImageField(default='default.png', upload_to='profile_pics')
 
     location = models.CharField(max_length=255, blank=True, null=True)
 

@@ -1552,7 +1552,7 @@
             "country": "None",
             "zip_code": "None",
             "phone_number": "None",
-            "profile_pic": "default.jpg",
+            "profile_pic": "default.png",
             "location": "None"
         }
     },
@@ -1569,7 +1569,7 @@
             "country": null,
             "zip_code": null,
             "phone_number": null,
-            "profile_pic": "default.jpg",
+            "profile_pic": "default.png",
             "location": null
         }
     },
@@ -1586,7 +1586,7 @@
             "country": null,
             "zip_code": null,
             "phone_number": null,
-            "profile_pic": "default.jpg",
+            "profile_pic": "default.png",
             "location": null
         }
     },
