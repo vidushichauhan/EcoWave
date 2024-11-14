@@ -6,38 +6,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com/"></script>
-    <title>{% block title %}EcoPulse{% endblock %}</title>
+    <title>EcoPulse</title>
     <style>
         nav {
-            background-color: white; /* White background */
-            border-radius: 0 0 2rem 2rem; /* Rounded bottom edges */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            padding: 1.5rem 2rem;
+            background-color: white;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 2rem; /* Adjusted padding to reduce height */
         }
 
         nav .nav-links a {
-            color: #333333; /* Neutral dark color for text */
+            color: #333333;
+            font-size: 1rem;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         nav .nav-links a:hover {
-            color: #57A773; /* Soft green hover effect */
+            color: #57A773;
         }
 
-        .join-button {
-            background-color: #57A773; /* Green background for the button */
-            color: white;
-            padding: 0.5rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 999px; /* Fully rounded button */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow for depth */
-            transition: background-color 0.3s ease;
+        .profile-container {
+            position: relative;
         }
 
-        .join-button:hover {
-            background-color: #3F8D62; /* Slightly darker green on hover */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 3rem;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            z-index: 10;
+            min-width: 150px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .profile-image {
+            width: 2.5rem; /* Larger profile image */
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: border 0.3s ease;
+        }
+
+        .profile-image:hover {
+            border: 2px solid #57A773;
         }
     </style>
 </head>
@@ -45,23 +73,47 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="flex items-center justify-between">
-        <!-- Logo -->
+        <!-- Logo Section -->
         <div class="flex items-center">
-            <img src="{% static 'images/logo.png' %}" alt="EcoPulse Logo" class="h-8 mr-2">
-            <span class="text-xl font-bold text-green-700">EcoPulse</span>
+            <a href="/shop" class="flex items-center">
+                <img src="{% static 'images/logo.png' %}" alt="EcoPulse Logo" class="h-10 mr-3"> <!-- Larger logo -->
+                <span class="text-xl font-bold text-green-700">EcoPulse</span>
+            </a>
         </div>
 
         <!-- Navigation Links -->
-        <div class="nav-links flex space-x-8">
-            <a href="{% url 'home' %}" class="text-lg">Home</a>
-            <a href="{% url 'about_us' %}" class="text-lg">About Us</a>
-            <a href="{% url 'services' %}" class="text-lg">Services</a>
-            <a href="{% url 'get_involved' %}" class="text-lg">Get Involved</a>
+        <div class="nav-links flex space-x-6">
+            <a href="{% url 'AddToCart:cart' %}">Cart</a>
+            <a href="{% url 'AddToCart:wishlist' %}">Wishlist</a>
+            <a href="{% url 'Shop:product_list' %}">Trade In</a>
+            <a href="{% url 'support:support-home' %}">Support</a>
+            <a href="{% url 'GreenCartEcom:about' %}">About Us</a>
         </div>
 
-        <!-- Join Us Button -->
-        <a href="{% url 'join_us' %}" class="join-button">Join Us</a>
+        <!-- Profile Section with Dropdown -->
+        <div class="profile-container relative">
+            <img src="{{ user_profile_pic }}" alt="Profile Picture" class="profile-image" id="profile-btn">
+            <div class="dropdown-menu" id="dropdown">
+                <a href="{% url 'Profile:get_user_details' %}">Profile</a>
+                <a href="{% url 'Auth:logout' %}">Logout</a>
+            </div>
+        </div>
     </nav>
+
+    <script>
+        const profileBtn = document.getElementById('profile-btn');
+        const dropdownMenu = document.getElementById('dropdown');
+
+        profileBtn.addEventListener('click', () => {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (!profileBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
